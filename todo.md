@@ -1,0 +1,17 @@
+- [x] How to store data ??!!
+- [ ] Api query to get all pokemon data in jsons
+- [ ] Only pull data when not found or on user petition
+- [x] Pokémon List boxes background texture (needs a whole re-work)
+- [ ] Pokémon List boxes buttons
+- [ ] Title Screen Texture  
+- [ ] Title Screen Animations  
+- [ ] Title Screen Buttons??  
+- [x] Battlers Chooser Screen display pokémon type(s)  
+- [x] Battlers Chooser & Battle screens shiny pokémon
+- [ ] Options Screen??  
+- [ ] Moves
+  
+- [ ] Improve UI and scaling  
+- [ ] Animations  
+- [ ] Port to other platforms  
+- [ ] Play with friends  

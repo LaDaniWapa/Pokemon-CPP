@@ -2,7 +2,8 @@
 #define UTILS_HPP
 
 #define PKGREY      CLITERAL(Color){ 72, 72, 72, 255 }
-#define EV 510                 // Max EV
+#define EV 252      // Max EV
+#define IV 31       // MAX IV
 
 #include <raylib.h>
 

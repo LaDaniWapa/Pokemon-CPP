@@ -1,0 +1,131 @@
+Model       → your data (BattleState, pokemon, DB)
+    Type
+        id
+        name
+
+    StatusEffect
+        id
+        name
+        description
+        is_volatile
+
+    Move
+        id
+        name
+        type -> Type
+        category (physical/special/status)
+        power
+        accuracy
+        pp
+        description
+        statis_effect -> StatusEffect
+        status_chance
+
+    PokemonSpecies  (fixed, from DB)
+        id (pokedex number)
+        name
+        type1 -> Type
+        type2 -> Type?
+        base_hp, base_atk, base_def
+        base_spatk, base_spdef, base_speed
+        learnable_moves[] -> Move
+
+    PokemonInstance (live pokemon in a team)
+        species -> PokemonSpecies
+        computed_hp, computed_atk, computed_def,
+        computed_spatk, computed_spdef, computed_speed
+        moves[4] -> Move
+        current_pp[4]
+
+    BattlePokemon   (PokemonInstance during a battle)
+        instance -> PokemonInstance
+        current_hp
+        status -> StatusEffect
+        stat_stages[6]  (atk/def/spatk/spdef/speed/acc, -6 to +6)
+
+    BattleState
+        player[6] -> BattlePokemon
+        enemy[6] -> BattlePokemon
+        player_current
+        enemy_current
+        opponent -> Opponent
+        weather -> StatusEffect
+        weather_turns_left (-1 = permanent)
+        phase (SELECT_MOVE, ANIMATING, SWITCH_IN, GAME_OVER)
+
+    Opponent    (Interface)
+        AIOpponent
+        LocalOpponent
+        NetworkOpponent
+
+    GameContext (shared across screens)
+        db -> Sqlite
+        battle -> BattleState
+        opponent -> Opponent
+        player_team[6] -> PokemonInstance
+
+View        → your raylib draw calls (screens)
+    Title
+        Start Button
+    BattlerChooser
+        Foe *Pokemon -> onClick:
+        My *Pokemon -> onClick:BattlerList
+        Start Buttons
+        *Pokemon
+            Name
+            Texture
+            Shiny Texture
+            is_shiny
+            type1
+            typ2
+            id
+    BattlerList
+        Box index
+        6*5 Pokemon icons -> onHove:Animate onClick:SelectPokemon
+        Box background texture
+    MoveChooser
+        List of *Move
+        *Move
+            Category texture
+            Type texture
+            Name
+            Pp
+    Battle
+        A lot of Textures
+        All pokemon stats
+        Server
+            All foe stats
+        Client
+            Foe
+                Name, HP percent, Level, id
+
+Controller  → input handling + game logic per screen
+    Title
+        Enter -> BattleChooserScreen
+
+    BattleChooser
+        Foe Pokemon
+            click -> BattlerListScreen
+            hover + s -> Toggle Shiny
+        My Pokemon
+            click -> BattlerListScreen
+            hover + s -> Toggle Shiny
+        Enter -> MoveChooserScreen
+        Start button click -> MoveChooserScreen
+
+    MoveChooser
+        Move
+            Click -> Select
+            Hover -> Toggle hover color
+            I -> display info popup
+
+        Start Button click -> BattleScreen
+        Enter -> BattleCreen
+
+    BattleScreen
+        Fight
+            OnClick -> Display moves
+                Move::OnClick -> Select Move for next turn.
+        Switch
+            OnClick -> Display Pokemons
+                Pokemon::OnClick -> Switch battler

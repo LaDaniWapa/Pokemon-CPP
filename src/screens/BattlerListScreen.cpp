@@ -1,14 +1,14 @@
-#include "screens/BattlerListScreen.hpp"
-#include "screens/BattlersChooserScreen.hpp"
+#include "BattlerListScreen.hpp"
+#include "BattlersChooserScreen.hpp"
+#include "ScreenManager.hpp"
 
 void BattlersListScreen::Load() {
     box = 0;
     loadBoxTextures();
-    boxBg = LoadTexture("assets/boxbg.png");
+    boxBg = LoadTexture("assets/UI/boxbg.png");
 }
 
 void BattlersListScreen::Unload() {
-    // Unload todas las texturas
     for (Texture2D texture : pokemonTextures) {
         UnloadTexture(texture);
     }
@@ -16,42 +16,38 @@ void BattlersListScreen::Unload() {
 }
 
 void BattlersListScreen::Update() {
-    // Actualizar la posicion del raton
     mousePoint = GetMousePosition();
 
-    // Si el mouse esta dentro del cuadrado imaginario de los pokemons (este multiplicado x2 por el escalado)
+    // Check if mouse is avobe a pokemon
     if (CheckCollisionPointRec(mousePoint, Rectangle{126, 90, 768, 640})) {
-        // Contar frames
-        framecounter++;
+        frame_counter++;
 
-        // Cambiar rect 2 veces por segundo
-        if (framecounter >= 15) {
+        // Update frame for animation
+        if (frame_counter >= 15) {
             selectedPokemonTextureRect.x = 0;
         }
 
-        if (framecounter >= 30) {
+        if (frame_counter >= 30) {
             selectedPokemonTextureRect.x = 64;
-            framecounter = 0;
+            frame_counter = 0;
         }
 
-        // Dividir mousePoint / 2 por el escalado
+        // mousePoint / 2 because of scaling
         x = (int)(mousePoint.x / 2 - 63) / 64;
         y = (int)(mousePoint.y / 2 - 45) / 64;
 
-        // Si se da click
         if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-
             pokedexNumber = y * 6 + x + 494 + box * 30;
 
-            // Si el pokemon es valido
+            // Check if valid pokemon
             if (pokedexNumber <= 649) {
-                // Cargar pantalla de eleccion de pokemons
+                // Load next screen
                 BattlersChooserScreen *battleChooserScreen =
                     dynamic_cast<BattlersChooserScreen *>(screenManager->getScreen("BattlersChooser"));
 
-                // Si se ha cargado bien la pantalla
+                // Check if screen was loaded
                 if (battleChooserScreen) {
-                    // Poner el ID de los pokemons
+                    // Ste pokemon IDs
                     if (isFoe) {
                         battleChooserScreen->setPokemon(oldPokedexNumber);
                         battleChooserScreen->setFoePokemon(pokedexNumber);

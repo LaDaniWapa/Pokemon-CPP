@@ -1,7 +1,7 @@
 #ifndef Type_HPP
 #define Type_HPP
 
-#include "utils.hpp"
+#include "Utils.hpp"
 
 enum PokemonType {
     NONE = -1,

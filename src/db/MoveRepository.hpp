@@ -1,0 +1,10 @@
+#ifndef POKEMON_CPP_MOVEREPOSITORY_HPP
+#define POKEMON_CPP_MOVEREPOSITORY_HPP
+
+
+class MoveRepository {
+    // todo()
+};
+
+
+#endif //POKEMON_CPP_MOVEREPOSITORY_HPP

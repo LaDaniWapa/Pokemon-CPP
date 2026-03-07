@@ -1,0 +1,10 @@
+#ifndef POKEMON_CPP_TYPEREPOSITORY_HPP
+#define POKEMON_CPP_TYPEREPOSITORY_HPP
+
+
+class TypeRepository {
+    // todo()
+};
+
+
+#endif //POKEMON_CPP_TYPEREPOSITORY_HPP

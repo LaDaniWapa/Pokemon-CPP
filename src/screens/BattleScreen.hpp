@@ -3,8 +3,8 @@
 
 #include <raylib.h>
 
-#include "battler.hpp"
-#include "screenManager.hpp"
+#include "model/Battler.hpp"
+#include "Screen.hpp"
 
 class BattleScreen : public Screen {
     Texture2D background{}, message{};

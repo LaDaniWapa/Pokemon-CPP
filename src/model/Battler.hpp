@@ -1,7 +1,7 @@
 #ifndef BATTLER_HPP
 #define BATTLER_HPP
 
-#include "utils.hpp"
+#include "../../include/Utils.hpp"
 
 class Battler {
     uint8_t level;
@@ -36,7 +36,7 @@ class Battler {
     ~Battler();
 
     void draw() const;
-    void updateHeatlRect();
+    void updateHealthRect();
 };
 
 #endif  // BATTLER_HPP

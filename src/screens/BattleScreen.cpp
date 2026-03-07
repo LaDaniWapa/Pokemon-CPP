@@ -1,4 +1,7 @@
-#include "screens/BattleScreen.hpp"
+#include "BattleScreen.hpp"
+
+#include "ScreenManager.hpp"
+#include "model/Battler.hpp"
 
 void BattleScreen::Load() {
     font = LoadFontEx("assets/fonts/pokemon-b-w.ttf", 60, nullptr, 0);

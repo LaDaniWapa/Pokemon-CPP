@@ -2,7 +2,7 @@
 #define TITLESCREEN_HPP
 
 #include <raylib.h>
-#include "screenManager.hpp"
+#include "ScreenManager.hpp"
 
 class TitleScreen : public Screen {
     Texture2D background{};

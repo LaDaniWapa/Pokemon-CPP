@@ -12,21 +12,20 @@ include(FetchContent)
 FetchContent_Declare(
         raylib
         GIT_REPOSITORY https://github.com/raysan5/raylib.git
-        GIT_TAG        5.5
+        GIT_TAG 5.5
 )
 set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(raylib)
 
-# Include headers
-include_directories(include)
-
 # Collect all sources
-file(GLOB_RECURSE SOURCES
-        src/*.cpp
-)
+file(GLOB_RECURSE SOURCES src/*.cpp)
 
 # Executable
 add_executable(pokemon-cpp ${SOURCES})
+
+# Include src/ itself
+target_include_directories(pokemon-cpp PRIVATE src)
+include_directories(include)
 
 # Debug flags
 target_compile_options(pokemon-cpp PRIVATE -g -fdiagnostics-color)

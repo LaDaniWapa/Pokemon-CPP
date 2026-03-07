@@ -3,33 +3,25 @@
 
 #include <raylib.h>
 
-#include "screenManager.hpp"
-#include "utils.hpp"
+#include "Screen.hpp"
+#include "Utils.hpp"
 
 class BattlersChooserScreen : public Screen {
-   private:
-    // Texturas de los pokemons
     Texture2D pokemonTexture{}, pokemonFoeTexture{};
-    // Textura de los tipos
     Texture2D typesTexture{};
-    // Texture de estrellita shiny
     Texture2D shinyStar{};
-    // Fuente
     Font font{};
-    // Estructura de los pokemons
+
     Pkm pokemon{}, pokemonFoe{};
-    // Shadder
     Shader outlineShader{};
-    // Rectangles para recortar la textura de tipos
     Rectangle type1{}, type2{}, type1Foe{}, type2Foe{};
-    // Numeros de la pokedex
+    // Pokedex numbers
     int pkxn{}, pkxnF{};
-    // Posicion del raton
     Vector2 mousePoint{.0f, .0f};
-    // Usar outlineShader o no
-    bool pokemonShader = false, pokemonFoeShader = false, hoverButton = false;
-    // Cambiar pokemon a shiny
-    bool pokemonShiny = false, pokemonFoeShiny = false;
+    // Use outlineShader
+    bool usePokemonShader = false, useFoePokemonShader = false, hoverButton = false;
+    // Toggle shiny
+    bool isPokemonShiny = false, isFoePokemonShiny = false;
 
    public:
     void Load() override;

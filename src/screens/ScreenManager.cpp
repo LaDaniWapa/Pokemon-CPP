@@ -1,4 +1,4 @@
-#include "screenManager.hpp"
+#include "ScreenManager.hpp"
 
 void Screen::SetScreenManager(ScreenManager* manager) {
     screenManager = manager;
@@ -9,7 +9,7 @@ void Screen::SetData(const std::string& key, const void* data) {
 }
 
 const void* Screen::GetData(const std::string& key) const {
-    auto it = screenData.find(key);
+    const auto it = screenData.find(key);
     return (it != screenData.end()) ? it->second : nullptr;
 }
 
@@ -29,19 +29,19 @@ void ScreenManager::ChangeScreen(const std::string& name) {
     }
 }
 
-void ScreenManager::Update() {
+void ScreenManager::Update() const {
     if (currentScreen) {
         currentScreen->Update();
     }
 }
 
-void ScreenManager::Draw() {
+void ScreenManager::Draw() const {
     if (currentScreen) {
         currentScreen->Draw();
     }
 }
 
 Screen* ScreenManager::getScreen(const std::string& name) {
-    auto it = screens.find(name);
+    const auto it = screens.find(name);
     return (it != screens.end()) ? it->second : nullptr;
 }

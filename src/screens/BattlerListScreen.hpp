@@ -3,32 +3,26 @@
 
 #include <raylib.h>
 
-#include "screenManager.hpp"
+#include "Screen.hpp"
 
 class BattlersListScreen : public Screen {
-   private:
-    // Primer frame de la textura
+    // Rectangle for first texture frame
     Rectangle textureRect{0, 0, 64, 64};
-    // Frame actualizable
+    // Frame for animated texture
     Rectangle selectedPokemonTextureRect{0, 0, 64, 64};
-    // Contador de frames
-    int framecounter = 0;
-    // Array de las texturas de una caja
+    int frame_counter = 0;
     Texture2D pokemonTextures[30]{};
-    // Fondo de la caja pokemon
     Texture2D boxBg{};
-    // Coordenadas del raton
     Vector2 mousePoint{};
-    // Variables para calcular el numero de pokemon basandonos en la posicion del raton
+    // Used to get clicked pokemon
     int x{}, y{}, pokedexNumber{};
-    // Pokemon que no queremos cambiar
+    // Pokemon that ramins the same
     int oldPokedexNumber{};
-    // Numero de la caja pokemon
+    // Pokemon box index
     int box{};
-    // Cambiar el pokemon contrario o el tuyo
+    // Is it the foe pokemon that we are selecting
     bool isFoe{};
 
-    // Cargar texturas de la caja
     void loadBoxTextures();
 
    public:

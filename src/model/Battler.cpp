@@ -1,4 +1,4 @@
-#include "battler.hpp"
+#include "Battler.hpp"
 
 Battler::Battler(int pokedexNumber, int level, bool shiny, bool foe, Font& font, Font& fontB) {
     this->foe = foe;
@@ -7,11 +7,10 @@ Battler::Battler(int pokedexNumber, int level, bool shiny, bool foe, Font& font,
     this->level = level;
 
     if (readPokemonFromFile(pokedexNumber, basePkm)) {
-        //printBattler(basePkm);
-                                    // IV
-        maxPS = ((basePkm.ps * 2 + randomNumber(0, 31) + EV / 4) * level / 100) + 10 + level;
+        printBattler(basePkm);
+        maxPS = ((basePkm.ps * 2 + IV + EV / 4) * level / 100) + 10 + level;
         currentPS = maxPS;
-        updateHeatlRect();
+        updateHealthRect();
         attack = getStat(basePkm.attack);
         defense = getStat(basePkm.defense);
         specialAttack = getStat(basePkm.specialAttack);
@@ -20,14 +19,14 @@ Battler::Battler(int pokedexNumber, int level, bool shiny, bool foe, Font& font,
         male = randomNumber(0, 1) == 0;
 
         battlerTexture = getPokemonTexture(pokedexNumber, shiny, !foe);
-        health = LoadTexture("assets/overlay_hp.png");
+        health = LoadTexture("assets/UI/overlay_hp.png");
 
         if (foe) {
-            databox = LoadTexture("assets/databox_normal_foe.png");
-            base = LoadTexture("assets/BattleBacks/grass_base1.png");
+            databox = LoadTexture("assets/UI/databox_normal_foe.png");
+            base = LoadTexture("assets/UI/BattleBacks/grass_base1.png");
         } else {
-            databox = LoadTexture("assets/databox_normal.png");
-            base = LoadTexture("assets/BattleBacks/grass_base0.png");
+            databox = LoadTexture("assets/UI/databox_normal.png");
+            base = LoadTexture("assets/UI/BattleBacks/grass_base0.png");
         }
     }
 }
@@ -59,7 +58,7 @@ void Battler::draw() const {
     }
 }
 
-void Battler::updateHeatlRect() {
+void Battler::updateHealthRect() {
     const float percent = (float) currentPS * 100 / maxPS;
 
     // 0 green 1 orange 2 red

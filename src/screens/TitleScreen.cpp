@@ -1,8 +1,8 @@
-#include "screens/TitleScreen.hpp"
-#include "screens/BattlersChooserScreen.hpp"
+#include "TitleScreen.hpp"
+#include "BattlersChooserScreen.hpp"
 
 void TitleScreen::Load() {
-    titleAnimatedImage = LoadImageAnim("assets/title.gif", &frames);
+    titleAnimatedImage = LoadImageAnim("assets/UI/title.gif", &frames);
     background = LoadTextureFromImage(titleAnimatedImage);
 }
 

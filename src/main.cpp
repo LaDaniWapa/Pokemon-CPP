@@ -1,7 +1,7 @@
 #include <ctime>
 
 #include "screens/TitleScreen.hpp"
-#include "screenManager.hpp"
+#include "screens/ScreenManager.hpp"
 #include "screens/BattlerListScreen.hpp"
 #include "screens/BattlersChooserScreen.hpp"
 #include "screens/BattleScreen.hpp"
@@ -15,7 +15,7 @@ int main()
     SetTraceLogLevel(LOG_ERROR);
 
     // Tamaño pantalla nintendo ds x2(images) x2(virtual screen)
-    InitWindow(1024, 768, "Pokemon ToTo");
+    InitWindow(1024, 768, "Pokemon CPP");
 
     // Poner icono a la ventana
     Image icon = LoadImage("assets/icon.png");

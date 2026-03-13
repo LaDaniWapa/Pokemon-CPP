@@ -15,12 +15,12 @@ class BattlersChooserScreen : public Screen {
     Pkm pokemon{}, pokemonFoe{};
     Shader outlineShader{};
     Rectangle type1{}, type2{}, type1Foe{}, type2Foe{};
-    // Pokedex numbers
+    /// Pokedex numbers
     int pkxn{}, pkxnF{};
     Vector2 mousePoint{.0f, .0f};
-    // Use outlineShader
+    /// Use outlineShader
     bool usePokemonShader = false, useFoePokemonShader = false, hoverButton = false;
-    // Toggle shiny
+    /// Toggle shiny
     bool isPokemonShiny = false, isFoePokemonShiny = false;
 
    public:

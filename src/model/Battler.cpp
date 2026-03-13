@@ -23,10 +23,10 @@ Battler::Battler(int pokedexNumber, int level, bool shiny, bool foe, Font& font,
 
         if (foe) {
             databox = LoadTexture("assets/UI/databox_normal_foe.png");
-            base = LoadTexture("assets/UI/BattleBacks/grass_base1.png");
+            base = LoadTexture("assets/BattleBacks/grass_base1.png");
         } else {
             databox = LoadTexture("assets/UI/databox_normal.png");
-            base = LoadTexture("assets/UI/BattleBacks/grass_base0.png");
+            base = LoadTexture("assets/BattleBacks/grass_base0.png");
         }
     }
 }
